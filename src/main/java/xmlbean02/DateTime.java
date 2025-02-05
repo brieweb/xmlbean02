@@ -32,7 +32,7 @@ import org.apache.xmlbeans.samples.datetime.ImportantDate;
  * It uses the schema defined in datetime.xsd.
  */
 public class DateTime {
-	public DateFormat df;  
+	private DateFormat df;  
 
    /**
     * Receives an XML Instance and prints the element values,
@@ -47,8 +47,9 @@ public class DateTime {
        // Create an instance of this class to work with.
        DateTime dt = new DateTime();
        // Set our format
-       dt.df = DateFormat.getDateTimeInstance(DateFormat.FULL,DateFormat.FULL, Locale.US);
-       dt.df.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+       DateFormat df1 = DateFormat.getDateTimeInstance(DateFormat.FULL,DateFormat.FULL, Locale.US);
+       df1.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+       dt.setDf(df1);
 
        // Create an instance of a Datetime type based on the received XML's schema
        DatetimeDocument doc = dt.parseXml("newdatetimesample.xml");
@@ -296,5 +297,15 @@ public class DateTime {
        }
        return isXmlValid;
    }
+
+    public DateFormat getDf() {
+        return df;
+    }
+
+    public void setDf(DateFormat df) {
+        this.df = df;
+    }
+   
+   
 
 }
